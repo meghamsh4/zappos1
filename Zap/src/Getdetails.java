@@ -30,7 +30,8 @@ public class Getdetails extends HttpServlet {
 	HashMap<Integer, Double> details;
 	HashMap<Double, ArrayList> i11=new HashMap<Double, ArrayList>();
 	int[] data2=new int[1000];
-	int p=0,q=0;
+	int q=0;
+	double p=0.0;
 	ArrayList<Integer> data=new ArrayList<Integer>();
 	ArrayList<Integer> key=new ArrayList<Integer>();
 	ArrayList<Double> val=new ArrayList<Double>();
@@ -66,8 +67,10 @@ public class Getdetails extends HttpServlet {
 	        }
 	        catch (NumberFormatException e)
 	        {
-	           System.out.println("This is not a number");
-	           System.out.println(e.getMessage());
+	        	String printhtml;
+				printhtml="<h1>Error in Items!!Check No of Items</h1>";
+				response.getWriter().write(printhtml);       // Write response body.
+				return;
 	        }
 	    }
 		
@@ -75,7 +78,8 @@ public class Getdetails extends HttpServlet {
 		{
 	        try 
 	        {
-	           p= Integer.parseInt(price);
+	        	p=Double.parseDouble(price);
+	           //p= Integer.parseInt(price);
 	           if(p<=0)
 	           {
 	        	   String printhtml;
@@ -174,7 +178,7 @@ public class Getdetails extends HttpServlet {
 		}
 }
 
-	public void getItems(HashMap<Integer,Double> det,int p1,int q1) 
+	public void getItems(HashMap<Integer,Double> det,double p1,int q1) 
 	{	
 		
 		for (Map.Entry<Integer, Double> e : det.entrySet())
@@ -187,7 +191,7 @@ public class Getdetails extends HttpServlet {
 		return;
 	}
 	
-	private void combinationUtil(Integer[] array,int n ,int r ,int index ,int[] data2, int i,HashMap<Integer,Double> det,int pric)
+	private void combinationUtil(Integer[] array,int n ,int r ,int index ,int[] data2, int i,HashMap<Integer,Double> det,double pric)
 	{
 		 	if (index == r)
 		    {
