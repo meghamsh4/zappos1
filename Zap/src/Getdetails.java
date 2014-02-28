@@ -52,6 +52,7 @@ public class Getdetails extends HttpServlet {
 		HashMap<Integer,Double> details=new HashMap<Integer,Double>();
 		String quantity=request.getParameter("quantity");
 		String price=request.getParameter("price");
+		int[] data2=new int[1000];
 		if ((quantity !=null && !"".equals(quantity) ))
 		{
 	        try 
