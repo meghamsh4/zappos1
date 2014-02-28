@@ -7,6 +7,7 @@ import java.net.URLConnection;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -191,19 +192,23 @@ public class Getdetails extends HttpServlet {
 		 	if (index == r)
 		    {
 		 		double sum=0;
+		 		HashSet<Integer> temp=new HashSet<Integer>();
 		 		ArrayList<Integer> t=new ArrayList<Integer>();
 		 		for (int j=0; j<r; j++)
 		 		{
 		 			sum+=det.get(data2[j]);
-		 		
 		 		}
 		 		if(sum>=0.9*pric && sum<=1.1*pric)
 		 		{
 		 			for(int j=0;j<r;j++)
 			 		{
-		 				t.add(data2[j]);
+		 				temp.add(data2[j]);
 			 		}
-		 			i11.put(sum, t);
+		 			if(temp.size()==q)
+		 			{
+		 				t.addAll(temp);
+		 				i11.put(sum, t);
+		 			}
 			         return;
 		 		}
 		 		else
