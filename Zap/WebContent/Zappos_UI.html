@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Search Items</title>
+<script>
+function determine()
+{
+	document.getElementById("divid").innerHTML="";
+	var price=document.getElementById("price").value;
+	var quan=document.getElementById("quantity").value;
+	if(price==""||quan=="")
+		alert("Fields Cannot be Empty");
+	if(isNaN(price))
+		alert("Incorrect Price.Enter Correct Value");
+	if(isNaN(quan))
+		alert("Incorrect Quantity.Enter correct Value");
+	var url="Getdetails?price="+price+"&quantity="+quan;
+	//alert(url);
+	var xhr;
+	if (window.XMLHttpRequest)
+	{// code for IE7+, Firefox, Chrome, Opera, Safari
+	  	xhr=new XMLHttpRequest();
+	}
+	else
+	{// code for IE6, IE5
+		 xhr=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xhr.onreadystatechange = function()
+	{
+    	if (xhr.readyState == 4) 
+    	{
+    		if (xhr.status == 200) 
+    		{
+    			var data = xhr.responseText;
+    	        document.getElementById("divid").innerHTML = data;
+    		}
+        
+		}
+	}
+    xhr.open('GET',url,true);
+    
+    xhr.send();
+}
+</script>
+</head>
+<body>
+<center>
+<form>
+<font size=5px style="float:center;valign:center;strength:600">Price &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </font>
+<input type="text" style="float:center;padding:10px"  id="price" placeholder="Enter Price" /><br><br><br><br>
+<font size=5px style="float:center;valign:center;strength:600">Items &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</font>
+<input type="text" style="float:center;padding:10px"  id="quantity" placeholder="Number of Items"/><br><br><br><br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="button" style="float:center;padding:10px" onclick="determine()">Search</button>
+</form>
+</center>
+<br>
+<br>
+<center>
+<div id="divid"></div>
+</center>
+
+</body>
