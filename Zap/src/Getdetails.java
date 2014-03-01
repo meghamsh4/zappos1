@@ -31,6 +31,7 @@ public class Getdetails extends HttpServlet {
 	HashMap<Double, ArrayList> i11=new HashMap<Double, ArrayList>();
 	int[] data2=new int[1000];
 	int q=0;
+	double collisions=0.0;
 	double p=0.0;
 	ArrayList<Integer> data=new ArrayList<Integer>();
 	ArrayList<Integer> key=new ArrayList<Integer>();
@@ -212,6 +213,12 @@ public class Getdetails extends HttpServlet {
 		 			if(temp.size()==q)
 		 			{
 		 				t.addAll(temp);
+		 				if(i11.containsKey(sum))
+		 				{
+		 					collisions=collisions+0.01;
+		 					sum=sum+collisions;
+		 				}
+		 					
 		 				i11.put(sum, t);
 		 			}
 			         return;
